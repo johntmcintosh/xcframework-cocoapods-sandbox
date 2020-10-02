@@ -305,6 +305,14 @@ xcframeworkCommand += """
 try asyncShell(command: xcframeworkCommand)
 
 // ---------------------------------------------------
+// Podspec
+// ---------------------------------------------------
+
+let podspecSource = "\(projectDir)/\(frameworkName).podspec"
+let podspecDestination = xcOutputDir
+try fileManager.copyFile(atPath: podspecSource, toDirectory: podspecDestination, allowOverwrite: true)
+
+// ---------------------------------------------------
 // dSYMs
 // ---------------------------------------------------
 
@@ -347,7 +355,7 @@ if buildDestinations.contains(deviceArchive) {
 
     for file in bcSymbolMapFiles { 
         // Extract the file name from the symbolmap file. For example, for a "file" value like 
-        //      /Users/jtm/development/iOS/PoweredBy/PoweredByDosh/Build/SDK-iOS.xcarchive/BCSymbolMaps/A5CD23BB-91EF-39A0-8235-9C72BD77B2D7.bcsymbolmap
+        //      /Users/jtm/development/iOS/MySDK/Build/SDK-iOS.xcarchive/BCSymbolMaps/A5CD23BB-91EF-39A0-8235-9C72BD77B2D7.bcsymbolmap
         // this will extract
         //      A5CD23BB-91EF-39A0-8235-9C72BD77B2D7
         let symbolMapFileName = try shell(command: "basename '\(file)' '.bcsymbolmap'")!.trimmingCharacters(in: .whitespacesAndNewlines)

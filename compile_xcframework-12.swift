@@ -342,6 +342,14 @@ xcframeworkCommand += """
 try asyncShell(command: xcframeworkCommand)
 
 // ---------------------------------------------------
+// Podspec
+// ---------------------------------------------------
+
+let podspecSource = "\(projectDir)/\(frameworkName).podspec"
+let podspecDestination = xcOutputDir
+try fileManager.copyFile(atPath: podspecSource, toDirectory: podspecDestination, allowOverwrite: true)
+
+// ---------------------------------------------------
 // BCSymbolMaps
 // ---------------------------------------------------
 
