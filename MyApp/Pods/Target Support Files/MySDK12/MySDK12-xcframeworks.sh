@@ -153,5 +153,5 @@ install_xcframework() {
   echo "Copied $source to $destination"
 }
 
-install_xcframework "${PODS_ROOT}/../../Build-12/MySDK12.xcframework" "MySDK12" "framework" "ios-arm64_x86_64-simulator/MySDK12.framework" "ios-arm64/MySDK12.framework"
+install_xcframework "${PODS_ROOT}/../../Build-12/MySDK12.xcframework" "MySDK12" "framework" "ios-x86_64-simulator/MySDK12.framework" "ios-arm64/MySDK12.framework"
 

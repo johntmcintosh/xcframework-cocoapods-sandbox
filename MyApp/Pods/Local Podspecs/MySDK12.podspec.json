@@ -12,11 +12,10 @@
   "source": {
     "git": ""
   },
-  "vendored_frameworks": "MySDK12.xcframework",
   "platforms": {
-    "osx": null,
-    "ios": null,
-    "tvos": null,
-    "watchos": null
+    "ios": "13.0"
+  },
+  "ios": {
+    "vendored_frameworks": "MySDK12.xcframework"
   }
 }

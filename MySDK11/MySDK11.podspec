@@ -6,5 +6,6 @@ Pod::Spec.new do |spec|
     spec.homepage     = 'https://github.com/johntmcintosh'
     spec.summary      = 'Testing'
     spec.source         = { :git => '' }
-    spec.vendored_frameworks = 'MySDK11.xcframework'
+    spec.ios.deployment_target = '13.0'
+    spec.ios.vendored_frameworks = 'MySDK11.xcframework'
   end
