@@ -222,7 +222,7 @@ let simulatorArchive = ArchiveDestination(
     buildDestinationParameter: "generic/platform=iOS Simulator",
     archiveFile: "SDK-iOS-Simulator",
     shouldHaveBitcodeSymbols: false,
-    xcframeworkArchitecture: "ios-x86_64-simulator"
+    xcframeworkArchitecture: "ios-arm64_x86_64-simulator"
 )
 
 let deviceArchive = ArchiveDestination(

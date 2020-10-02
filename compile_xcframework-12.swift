@@ -199,7 +199,6 @@ struct ArchiveDestination: Equatable {
     var buildDestinationParameter: Path
     var archiveFile: Path
     var shouldHaveBitcodeSymbols: Bool
-    var xcframeworkArchitecture: String
 
     var path: Path {
         "\(buildDir)/\(archiveFile).xcarchive"
@@ -213,23 +212,60 @@ struct ArchiveDestination: Equatable {
         "\(path)/BCSymbolMaps"
     }
 
+    var dsymsDirectory: Path { 
+        "\(path)/dSYMs"
+    }
+
     var dsymPath: Path { 
         "\(path)/dSYMs/\(frameworkName).framework.dSYM"
+    }
+
+    func xcodebuildDebugSymbolsParameters() throws -> String { 
+        var parameters = ""
+
+        let findDsymsCommand = """
+        find "\(dsymsDirectory)" -name "*.dSYM"
+        """
+        let findDsymsCommandShellResponse = try shell(command: findDsymsCommand) ?? ""
+        let dSYMFiles = findDsymsCommandShellResponse.components(separatedBy: .newlines).filter { $0.isEmpty == false }
+        // TODO: Update error thrown
+        guard dSYMFiles.isEmpty == false else { throw SymbolMapError.noBcSymbolMapsFound }
+        print("Found dSYMFiles files:".bold)
+        print(dSYMFiles)
+
+        for file in dSYMFiles { 
+            parameters += " -debug-symbols '\(file)' \\\n"
+        }
+
+        let findSymbolMapsCommand = """
+        find "\(bcSymbolMapsDirectory)" -name "*.bcsymbolmap" -type f
+        """
+        let symbolMapFilesShellResponse = (try? shell(command: findSymbolMapsCommand)) ?? ""
+        let bcSymbolMapFiles = symbolMapFilesShellResponse.components(separatedBy: .newlines).filter { $0.isEmpty == false }
+
+        let hasNecessaryBitcodeSymbols = shouldHaveBitcodeSymbols ? bcSymbolMapFiles.count > 0 : true 
+        guard hasNecessaryBitcodeSymbols else { throw SymbolMapError.noBcSymbolMapsFound }
+        print("Found BCSymbolMap files:".bold)
+        print(bcSymbolMapFiles)
+
+        for file in bcSymbolMapFiles { 
+            parameters += " -debug-symbols '\(file)' \\\n"
+        }
+
+        return parameters
     }
 }
 
 let simulatorArchive = ArchiveDestination(
     buildDestinationParameter: "generic/platform=iOS Simulator",
     archiveFile: "SDK-iOS-Simulator",
-    shouldHaveBitcodeSymbols: false,
-    xcframeworkArchitecture: "ios-x86_64-simulator"
+    shouldHaveBitcodeSymbols: false
 )
 
 let deviceArchive = ArchiveDestination(
     buildDestinationParameter: "generic/platform=iOS",
     archiveFile: "SDK-iOS",
-    shouldHaveBitcodeSymbols: true,
-    xcframeworkArchitecture: "ios-arm64"
+    shouldHaveBitcodeSymbols: true
 )
 
 let buildDestinations: [ArchiveDestination] = {
@@ -293,9 +329,10 @@ try fileManager.deleteDirectory(at: xcframeworkOutputPath)
 
 // Generate xcframework from all archives
 var xcframeworkCommand = "xcodebuild -create-xcframework \\\n"
-buildDestinations.forEach {
+try buildDestinations.forEach {
     xcframeworkCommand += """
-        -framework "\($0.frameworkPath)"
+        -framework "\($0.frameworkPath)" \\
+        \(try $0.xcodebuildDebugSymbolsParameters())
     """
 }
 xcframeworkCommand += """
@@ -313,70 +350,10 @@ let podspecDestination = xcOutputDir
 try fileManager.copyFile(atPath: podspecSource, toDirectory: podspecDestination, allowOverwrite: true)
 
 // ---------------------------------------------------
-// dSYMs
-// ---------------------------------------------------
-
-try buildDestinations.forEach {
-    let dsymOutputDir = "\(xcframeworkOutputPath)/\($0.xcframeworkArchitecture)/dSYMs"
-    try fileManager.copyFile(atPath: $0.dsymPath, toDirectory: dsymOutputDir, allowOverwrite: true)
-}
-
-// ---------------------------------------------------
 // BCSymbolMaps
 // ---------------------------------------------------
 
 enum SymbolMapError: Error {
     case noUUIDsFound
     case noBcSymbolMapsFound
-}
-
-if buildDestinations.contains(deviceArchive) { 
-    print("Collecting BCSymbolMaps".bold)
-
-    let uuidCommand = """
-    dwarfdump --uuid "\(deviceArchive.dsymPath)" | cut -d ' ' -f2
-    """
-    let uuidShellResponse = try shell(command: uuidCommand) ?? ""
-    print(uuidShellResponse)
-    
-    let uuids = uuidShellResponse.components(separatedBy: .newlines).filter { $0.isEmpty == false }
-    guard uuids.isEmpty == false else { throw SymbolMapError.noUUIDsFound }
-    print("Found UUIDs in device dSYM:".bold)
-    print(uuids)
-
-    let symbolMapCommand = """
-    find "\(deviceArchive.bcSymbolMapsDirectory)" -name "*.bcsymbolmap" -type f
-    """
-    let symbolmapFilesShellResponse = try shell(command: symbolMapCommand) ?? ""
-    let bcSymbolMapFiles = symbolmapFilesShellResponse.components(separatedBy: .newlines).filter { $0.isEmpty == false }
-    guard bcSymbolMapFiles.isEmpty == false else { throw SymbolMapError.noBcSymbolMapsFound }
-    print("Found BCSymbolMap files:".bold)
-    print(bcSymbolMapFiles)
-
-    for file in bcSymbolMapFiles { 
-        // Extract the file name from the symbolmap file. For example, for a "file" value like 
-        //      /Users/jtm/development/iOS/MySDK/Build/SDK-iOS.xcarchive/BCSymbolMaps/A5CD23BB-91EF-39A0-8235-9C72BD77B2D7.bcsymbolmap
-        // this will extract
-        //      A5CD23BB-91EF-39A0-8235-9C72BD77B2D7
-        let symbolMapFileName = try shell(command: "basename '\(file)' '.bcsymbolmap'")!.trimmingCharacters(in: .whitespacesAndNewlines)
-        for uuid in uuids { 
-            print("Checking dSYM uuid (\(uuid)) for a match against bcsymbolmap (\(symbolMapFileName))")
-            if uuid == symbolMapFileName { 
-                let outputSymbolMapsDirectory = "\(xcframeworkOutputPath)/\(deviceArchive.xcframeworkArchitecture)/BCSymbolMaps"
-                let outputDsymPath = "\(xcframeworkOutputPath)/\(deviceArchive.xcframeworkArchitecture)/dSYMs/MySDK12.framework.dSYM"
-
-                // Copy the symbolmap file into the ouptut directory
-                try fileManager.copyFile(atPath: file, toDirectory: outputSymbolMapsDirectory, allowOverwrite: true)
-
-                // "Fix an issue where some symbols on your crash reports after symbolication appear hidden."
-                // Reference: https://instabug.com/blog/ios-binary-framework/
-                let dsymutilCommand = """
-                dsymutil --symbol-map "\(outputSymbolMapsDirectory)/\(symbolMapFileName).bcsymbolmap" "\(outputDsymPath)"
-                """
-                try shell(command: dsymutilCommand)
-            }
-        }
-    }
-} else { 
-    print("Skipping BCSymbolMap collection for simulator-only build.".bold)
 }
