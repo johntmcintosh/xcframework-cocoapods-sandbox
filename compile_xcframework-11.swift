@@ -189,9 +189,9 @@ let fileManager = FileManager()
 
 // Setup constants
 let scriptDir: Path = fileManager.currentDirectoryPath
-let projectDir = "\(scriptDir)/MySDK"
+let projectDir = "\(scriptDir)/MySDK11"
 let buildDir = "\(scriptDir)/Build-11"
-let frameworkName = "MySDK"
+let frameworkName = "MySDK11"
 
 // Define output archives
 
@@ -251,9 +251,9 @@ let buildDestinations: [ArchiveDestination] = {
 // ---------------------------------------------------
 
 struct BuildDefinition { 
-    private let projectName = "MySDK.xcodeproj"
+    private let projectName = "MySDK11.xcodeproj"
     private var projectPath: String { "\(projectDir)/\(projectName)" }
-    private let scheme: String = "MySDK"
+    private let scheme: String = "MySDK11"
     private let buildConfig: String = "Release"
     private let destination: ArchiveDestination
 
@@ -309,7 +309,7 @@ try asyncShell(command: xcframeworkCommand)
 // ---------------------------------------------------
 
 try buildDestinations.forEach {
-    let dsymOutputDir = "\(xcframeworkOutputPath)/\($0.xcframeworkArchitecture)/MySDK.framework/dSYMs"
+    let dsymOutputDir = "\(xcframeworkOutputPath)/\($0.xcframeworkArchitecture)/MySDK11.framework/dSYMs"
     try fileManager.copyFile(atPath: $0.dsymPath, toDirectory: dsymOutputDir, allowOverwrite: true)
 }
 
@@ -354,8 +354,8 @@ if buildDestinations.contains(deviceArchive) {
         for uuid in uuids { 
             print("Checking dSYM uuid (\(uuid)) for a match against bcsymbolmap (\(symbolMapFileName))")
             if uuid == symbolMapFileName { 
-                let outputSymbolMapsDirectory = "\(xcframeworkOutputPath)/\(deviceArchive.xcframeworkArchitecture)/MySDK.framework/BCSymbolMaps"
-                let outputDsymPath = "\(xcframeworkOutputPath)/\(deviceArchive.xcframeworkArchitecture)/MySDK.framework/dSYMs/MySDK.framework.dSYM"
+                let outputSymbolMapsDirectory = "\(xcframeworkOutputPath)/\(deviceArchive.xcframeworkArchitecture)/MySDK11.framework/BCSymbolMaps"
+                let outputDsymPath = "\(xcframeworkOutputPath)/\(deviceArchive.xcframeworkArchitecture)/MySDK11.framework/dSYMs/MySDK11.framework.dSYM"
 
                 // Copy the symbolmap file into the ouptut directory
                 try fileManager.copyFile(atPath: file, toDirectory: outputSymbolMapsDirectory, allowOverwrite: true)

@@ -10,6 +10,6 @@ import Foundation
 public class SDKInterface {
     
     public static func launch() {
-        print("SDK launched 🎉")
+        print("SDK 12 launched 🎉")
     }
 }

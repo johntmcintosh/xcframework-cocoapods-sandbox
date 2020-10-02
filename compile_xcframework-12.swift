@@ -189,9 +189,9 @@ let fileManager = FileManager()
 
 // Setup constants
 let scriptDir: Path = fileManager.currentDirectoryPath
-let projectDir = "\(scriptDir)/MySDK"
+let projectDir = "\(scriptDir)/MySDK12"
 let buildDir = "\(scriptDir)/Build-12"
-let frameworkName = "MySDK"
+let frameworkName = "MySDK12"
 
 // Define output archives
 
@@ -287,9 +287,9 @@ let buildDestinations: [ArchiveDestination] = {
 // ---------------------------------------------------
 
 struct BuildDefinition { 
-    private let projectName = "MySDK.xcodeproj"
+    private let projectName = "MySDK12.xcodeproj"
     private var projectPath: String { "\(projectDir)/\(projectName)" }
-    private let scheme: String = "MySDK"
+    private let scheme: String = "MySDK12"
     private let buildConfig: String = "Release"
     private let destination: ArchiveDestination
 
