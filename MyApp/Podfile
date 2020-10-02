@@ -1,0 +1,7 @@
+platform :ios
+
+target 'MyApp' do
+    use_frameworks!
+    pod 'MySDK11', :path => '../Build-11'
+    pod 'MySDK12', :path => '../Build-12'
+end

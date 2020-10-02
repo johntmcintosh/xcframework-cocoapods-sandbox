@@ -1,0 +1,22 @@
+{
+  "name": "MySDK11",
+  "version": "0.0.11",
+  "authors": {
+    "John McIntosh": "johntmcintosh@gmail.com"
+  },
+  "license": {
+    "type": "MIT"
+  },
+  "homepage": "https://github.com/johntmcintosh",
+  "summary": "Testing",
+  "source": {
+    "git": ""
+  },
+  "vendored_frameworks": "MySDK11.xcframework",
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}

@@ -1,0 +1,21 @@
+PODS:
+  - MySDK11 (0.0.11)
+  - MySDK12 (0.0.12)
+
+DEPENDENCIES:
+  - MySDK11 (from `../Build-11`)
+  - MySDK12 (from `../Build-12`)
+
+EXTERNAL SOURCES:
+  MySDK11:
+    :path: "../Build-11"
+  MySDK12:
+    :path: "../Build-12"
+
+SPEC CHECKSUMS:
+  MySDK11: 63b5cd7a69cf3167930514cff6d7d26359d8b1de
+  MySDK12: 54014c38e805f8e5a908216cdb621e42bd8354e4
+
+PODFILE CHECKSUM: 294915fd5c3334baf4f512194444bf575dee9382
+
+COCOAPODS: 1.10.0.rc.1

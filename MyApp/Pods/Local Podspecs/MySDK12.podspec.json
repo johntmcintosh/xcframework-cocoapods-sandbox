@@ -1,0 +1,22 @@
+{
+  "name": "MySDK12",
+  "version": "0.0.12",
+  "authors": {
+    "John McIntosh": "johntmcintosh@gmail.com"
+  },
+  "license": {
+    "type": "MIT"
+  },
+  "homepage": "https://github.com/johntmcintosh",
+  "summary": "Testing",
+  "source": {
+    "git": ""
+  },
+  "vendored_frameworks": "MySDK12.xcframework",
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}

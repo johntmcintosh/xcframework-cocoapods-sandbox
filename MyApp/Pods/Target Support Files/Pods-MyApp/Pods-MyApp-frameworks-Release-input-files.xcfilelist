@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-MyApp/Pods-MyApp-frameworks.sh
+${PODS_XCFRAMEWORKS_BUILD_DIR}/MySDK11/MySDK11.framework/MySDK11
+${PODS_XCFRAMEWORKS_BUILD_DIR}/MySDK12/MySDK12.framework/MySDK12
