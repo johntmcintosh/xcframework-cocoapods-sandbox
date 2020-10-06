@@ -144,14 +144,10 @@ install_xcframework() {
     mkdir -p "$destination"
   fi
 
-  if [[ "$package_type" == "library" ]]; then
-    # Libraries can contain headers, module maps, and a binary, so we'll copy everything in the folder over
-    copy_dir "$source/" "$destination"
-  elif [[ "$package_type" == "framework" ]]; then
-    copy_dir "$source" "$destination"
-  fi
+  copy_dir "$source/" "$destination"
+
   echo "Copied $source to $destination"
 }
 
-install_xcframework "${PODS_ROOT}/../../Build-12/MySDK12.xcframework" "MySDK12" "framework" "ios-arm64_x86_64-simulator/MySDK12.framework" "ios-arm64/MySDK12.framework"
+install_xcframework "${PODS_ROOT}/../../Build-12/MySDK12.xcframework" "MySDK12" "framework" "ios-arm64_x86_64-simulator" "ios-arm64"
 
