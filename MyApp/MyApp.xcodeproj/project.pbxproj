@@ -6,6 +6,20 @@
 	objectVersion = 51;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		5B16AA61252CCA3400768FD7 /* Archive */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5B16AA64252CCA3400768FD7 /* Build configuration list for PBXAggregateTarget "Archive" */;
+			buildPhases = (
+				5B16AA65252CCA4000768FD7 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Archive;
+			productName = Archive;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		5B6C207225278C65003E69B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C207125278C65003E69B2 /* AppDelegate.swift */; };
 		5B6C207425278C65003E69B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C207325278C65003E69B2 /* SceneDelegate.swift */; };
@@ -223,6 +237,9 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					5B16AA61252CCA3400768FD7 = {
+						CreatedOnToolsVersion = 11.7;
+					};
 					5B6C206D25278C65003E69B2 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -252,6 +269,7 @@
 				5B6C206D25278C65003E69B2 /* MyApp */,
 				5B6C208325278C66003E69B2 /* MyAppTests */,
 				5B6C208E25278C66003E69B2 /* MyAppUITests */,
+				5B16AA61252CCA3400768FD7 /* Archive */,
 			);
 		};
 /* End PBXProject section */
@@ -284,6 +302,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5B16AA65252CCA4000768FD7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\narchivePath=\"${PROJECT_DIR}/build/MyApp.xcarchive\"\n\nxcodebuild archive \\\n   -workspace \"${PROJECT_DIR}/MyApp.xcworkspace\" \\\n   -scheme \"MyApp\" \\\n   -configuration \"Release\" \\\n   -derivedDataPath \"${PROJECT_DIR}/build\" \\\n   -archivePath \"${archivePath}\"\n\n# ---------------------------------------\n# Collecting debug symbols in archive\n# ---------------------------------------\nexitCode=0\n\n# Ensure the expected BCSYmbolMaps are in the root of the archive\nbcSymbolMapsPath=\"${archivePath}/BCSymbolMaps\"\nnumSymbolMaps=`ls -1 \"${bcSymbolMapsPath}\" | wc -l | xargs`\nexpectedSymbolMaps=3\nif [ $numSymbolMaps -ne $expectedSymbolMaps ]; then \n    echo \"error: Expected ${expectedSymbolMaps} BCSymbolMaps, but found ${numSymbolMaps}\"\n    exitCode=1\nfi  \n\n# Ensure the expected dSYMs are in the root of the archive\ndsymsPath=\"${archivePath}/dSYMs\"\n\nif ! test -d \"$dsymsPath/MyApp.app.dSYM\"; then\n    echo \"error: MyApp.app.dSYM missing\"\n    exitCode=1\nfi\n\nif ! test -d \"$dsymsPath/MySDK11.framework.dSYM\"; then\n    echo \"error: MySDK11.framework.dSYM missing\"\n    exitCode=1\nfi\n\nif ! test -d \"$dsymsPath/MySDK12.framework.dSYM\"; then\n    echo \"error: MySDK12.framework.dSYM missing\"\n    exitCode=1\nfi\n\n# ---------------------------------------\n# Stripping source Xcode 11 framework\n# ---------------------------------------\n\n# Ensure BCSymbolMaps have been stripped from the source Xcode 11 framework\n\nappPath=\"${archivePath}/Products/Applications/MyApp.app\"\nxcode11FrameworkPath=\"${appPath}/Frameworks/MySDK11.framework\"\n\nif test -d \"${xcode11FrameworkPath}/BCSymbolMaps\"; then\n    echo \"error: MySDK11.framework embedded BCSymbolMaps still present\"\n    exitCode=1\nfi\n\n# Ensure dSYMs have been stripped from the source Xcode 11 framework\n\nif test -d \"${xcode11FrameworkPath}/dSYMs\"; then\n    echo \"error: MySDK11.framework embedded dSYM still present\"\n    exitCode=1\nfi\n\nexit $exitCode\n";
+		};
 		972F13EA7D918DF75AF80ACB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,6 +422,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5B16AA62252CCA3400768FD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5B16AA63252CCA3400768FD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		5B6C209625278C66003E69B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -632,6 +683,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5B16AA64252CCA3400768FD7 /* Build configuration list for PBXAggregateTarget "Archive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B16AA62252CCA3400768FD7 /* Debug */,
+				5B16AA63252CCA3400768FD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5B6C206925278C65003E69B2 /* Build configuration list for PBXProject "MyApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
