@@ -29,7 +29,7 @@
 		5B6C207E25278C66003E69B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B6C207C25278C66003E69B2 /* LaunchScreen.storyboard */; };
 		5B6C208925278C66003E69B2 /* MyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C208825278C66003E69B2 /* MyAppTests.swift */; };
 		5B6C209425278C66003E69B2 /* MyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6C209325278C66003E69B2 /* MyAppUITests.swift */; };
-		915730B3EF90718EC37166CC /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0537639AC40A8B8DC57147 /* Pods_MyApp.framework */; };
+		9F1D8401CE5B868D7FE1E117 /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A82546F73D17BF87378626E /* Pods_MyApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		35A7F55B89DF7C0D2EE70707 /* Pods-MyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.release.xcconfig"; path = "Target Support Files/Pods-MyApp/Pods-MyApp.release.xcconfig"; sourceTree = "<group>"; };
+		3A82546F73D17BF87378626E /* Pods_MyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A7257D90747B5C4E300529 /* Pods-MyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.release.xcconfig"; path = "Target Support Files/Pods-MyApp/Pods-MyApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B6C206E25278C65003E69B2 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B6C207125278C65003E69B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B6C207325278C65003E69B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,8 +68,7 @@
 		5B6C209525278C66003E69B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B6C20EE2527940A003E69B2 /* MySDK11.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MySDK11.xcframework; path = "../Build-11/MySDK11.xcframework"; sourceTree = "<group>"; };
 		5B6C20F42527940E003E69B2 /* MySDK12.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MySDK12.xcframework; path = "../Build-12/MySDK12.xcframework"; sourceTree = "<group>"; };
-		EA9D451ECCDFE10362E96687 /* Pods-MyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.debug.xcconfig"; path = "Target Support Files/Pods-MyApp/Pods-MyApp.debug.xcconfig"; sourceTree = "<group>"; };
-		FC0537639AC40A8B8DC57147 /* Pods_MyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		776DC206CA3CCF9ED42642D8 /* Pods-MyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.debug.xcconfig"; path = "Target Support Files/Pods-MyApp/Pods-MyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				915730B3EF90718EC37166CC /* Pods_MyApp.framework in Frameworks */,
+				9F1D8401CE5B868D7FE1E117 /* Pods_MyApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +156,7 @@
 			children = (
 				5B6C20F42527940E003E69B2 /* MySDK12.xcframework */,
 				5B6C20EE2527940A003E69B2 /* MySDK11.xcframework */,
-				FC0537639AC40A8B8DC57147 /* Pods_MyApp.framework */,
+				3A82546F73D17BF87378626E /* Pods_MyApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -164,8 +164,8 @@
 		DD14B6E77E80739D52B6C36D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EA9D451ECCDFE10362E96687 /* Pods-MyApp.debug.xcconfig */,
-				35A7F55B89DF7C0D2EE70707 /* Pods-MyApp.release.xcconfig */,
+				776DC206CA3CCF9ED42642D8 /* Pods-MyApp.debug.xcconfig */,
+				54A7257D90747B5C4E300529 /* Pods-MyApp.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -177,11 +177,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B6C209825278C66003E69B2 /* Build configuration list for PBXNativeTarget "MyApp" */;
 			buildPhases = (
-				AAECF56FCE21C58E8B7B4F76 /* [CP] Check Pods Manifest.lock */,
+				48EBCE5528BF719C3175B099 /* [CP] Check Pods Manifest.lock */,
 				5B6C206A25278C65003E69B2 /* Sources */,
 				5B6C206B25278C65003E69B2 /* Frameworks */,
 				5B6C206C25278C65003E69B2 /* Resources */,
-				972F13EA7D918DF75AF80ACB /* [CP] Embed Pods Frameworks */,
+				40CEFCAFFB535C0E57DB6F75 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,24 +302,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5B16AA65252CCA4000768FD7 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\narchivePath=\"${PROJECT_DIR}/build/MyApp.xcarchive\"\n\nxcodebuild archive \\\n   -workspace \"${PROJECT_DIR}/MyApp.xcworkspace\" \\\n   -scheme \"MyApp\" \\\n   -configuration \"Release\" \\\n   -derivedDataPath \"${PROJECT_DIR}/build\" \\\n   -archivePath \"${archivePath}\"\n\n# ---------------------------------------\n# Collecting debug symbols in archive\n# ---------------------------------------\nexitCode=0\n\n# Ensure the expected BCSYmbolMaps are in the root of the archive\nbcSymbolMapsPath=\"${archivePath}/BCSymbolMaps\"\nnumSymbolMaps=`ls -1 \"${bcSymbolMapsPath}\" | wc -l | xargs`\nexpectedSymbolMaps=3\nif [ $numSymbolMaps -ne $expectedSymbolMaps ]; then \n    echo \"error: Expected ${expectedSymbolMaps} BCSymbolMaps, but found ${numSymbolMaps}\"\n    exitCode=1\nfi  \n\n# Ensure the expected dSYMs are in the root of the archive\ndsymsPath=\"${archivePath}/dSYMs\"\n\nif ! test -d \"$dsymsPath/MyApp.app.dSYM\"; then\n    echo \"error: MyApp.app.dSYM missing\"\n    exitCode=1\nfi\n\nif ! test -d \"$dsymsPath/MySDK11.framework.dSYM\"; then\n    echo \"error: MySDK11.framework.dSYM missing\"\n    exitCode=1\nfi\n\nif ! test -d \"$dsymsPath/MySDK12.framework.dSYM\"; then\n    echo \"error: MySDK12.framework.dSYM missing\"\n    exitCode=1\nfi\n\n# ---------------------------------------\n# Stripping source Xcode 11 framework\n# ---------------------------------------\n\n# Ensure BCSymbolMaps have been stripped from the source Xcode 11 framework\n\nappPath=\"${archivePath}/Products/Applications/MyApp.app\"\nxcode11FrameworkPath=\"${appPath}/Frameworks/MySDK11.framework\"\n\nif test -d \"${xcode11FrameworkPath}/BCSymbolMaps\"; then\n    echo \"error: MySDK11.framework embedded BCSymbolMaps still present\"\n    exitCode=1\nfi\n\n# Ensure dSYMs have been stripped from the source Xcode 11 framework\n\nif test -d \"${xcode11FrameworkPath}/dSYMs\"; then\n    echo \"error: MySDK11.framework embedded dSYM still present\"\n    exitCode=1\nfi\n\nexit $exitCode\n";
-		};
-		972F13EA7D918DF75AF80ACB /* [CP] Embed Pods Frameworks */ = {
+		40CEFCAFFB535C0E57DB6F75 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -336,7 +319,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyApp/Pods-MyApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AAECF56FCE21C58E8B7B4F76 /* [CP] Check Pods Manifest.lock */ = {
+		48EBCE5528BF719C3175B099 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -356,6 +339,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B16AA65252CCA4000768FD7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\narchivePath=\"${PROJECT_DIR}/build/MyApp.xcarchive\"\n\nxcodebuild archive \\\n   -workspace \"${PROJECT_DIR}/MyApp.xcworkspace\" \\\n   -scheme \"MyApp\" \\\n   -configuration \"Release\" \\\n   -derivedDataPath \"${PROJECT_DIR}/build\" \\\n   -archivePath \"${archivePath}\"\n\n# ---------------------------------------\n# Collecting debug symbols in archive\n# ---------------------------------------\nexitCode=0\n\n# Ensure the expected BCSYmbolMaps are in the root of the archive\nbcSymbolMapsPath=\"${archivePath}/BCSymbolMaps\"\nnumSymbolMaps=`ls -1 \"${bcSymbolMapsPath}\" | wc -l | xargs`\nexpectedSymbolMaps=3\nif [ $numSymbolMaps -ne $expectedSymbolMaps ]; then \n    echo \"error: Expected ${expectedSymbolMaps} BCSymbolMaps, but found ${numSymbolMaps}\"\n    exitCode=1\nfi  \n\n# Ensure the expected SDK11 BCSYmbolMaps are in the root of the archive\nsdk11BCSymbolMapDir=\"${PROJECT_DIR}/../Build-11/MySDK11.xcframework/ios-arm64/MySDK11.framework/BCSymbolMaps\"\nfor file in \"${sdk11BCSymbolMapDir}\"/*; do\n    filename=\"${file##*/}\"\n    if ! test -f \"${bcSymbolMapsPath}/${filename}\"; then\n        echo \"error: MySDK11 BCSymbolMap ${filename} missing\"\n        exitCode=1\n    fi\ndone\n\n# Ensure the expected SDK12 BCSYmbolMaps are in the root of the archive\nsdk12BCSymbolMapDir=\"${PROJECT_DIR}/../Build-12/MySDK12.xcframework/ios-arm64/BCSymbolMaps\"\nfor file in \"${sdk12BCSymbolMapDir}\"/*; do\n    filename=\"${file##*/}\"\n    if ! test -f \"${bcSymbolMapsPath}/${filename}\"; then\n        echo \"error: MySDK12 BCSymbolMap ${filename} missing\"\n        exitCode=1\n    fi\ndone\n\n# Ensure the expected dSYMs are in the root of the archive\ndsymsPath=\"${archivePath}/dSYMs\"\n\nif ! test -d \"$dsymsPath/MyApp.app.dSYM\"; then\n    echo \"error: MyApp.app.dSYM missing\"\n    exitCode=1\nfi\n\nif ! test -d \"$dsymsPath/MySDK11.framework.dSYM\"; then\n    echo \"error: MySDK11.framework.dSYM missing\"\n    exitCode=1\nfi\n\nif ! test -d \"$dsymsPath/MySDK12.framework.dSYM\"; then\n    echo \"error: MySDK12.framework.dSYM missing\"\n    exitCode=1\nfi\n\n# ---------------------------------------\n# Stripping source Xcode 11 framework\n# ---------------------------------------\n\n# Ensure BCSymbolMaps have been stripped from the source Xcode 11 framework\n\nappPath=\"${archivePath}/Products/Applications/MyApp.app\"\nxcode11FrameworkPath=\"${appPath}/Frameworks/MySDK11.framework\"\n\nif test -d \"${xcode11FrameworkPath}/BCSymbolMaps\"; then\n    echo \"error: MySDK11.framework embedded BCSymbolMaps still present\"\n    exitCode=1\nfi\n\n# Ensure dSYMs have been stripped from the source Xcode 11 framework\n\nif test -d \"${xcode11FrameworkPath}/dSYMs\"; then\n    echo \"error: MySDK11.framework embedded dSYM still present\"\n    exitCode=1\nfi\n\nexit $exitCode\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -556,7 +557,7 @@
 		};
 		5B6C209925278C66003E69B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA9D451ECCDFE10362E96687 /* Pods-MyApp.debug.xcconfig */;
+			baseConfigurationReference = 776DC206CA3CCF9ED42642D8 /* Pods-MyApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -579,7 +580,7 @@
 		};
 		5B6C209A25278C66003E69B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35A7F55B89DF7C0D2EE70707 /* Pods-MyApp.release.xcconfig */;
+			baseConfigurationReference = 54A7257D90747B5C4E300529 /* Pods-MyApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
